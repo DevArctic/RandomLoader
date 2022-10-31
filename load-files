@@ -1,0 +1,21 @@
+#!/usr/bin/python3.10
+
+import json
+import os
+import datetime
+from progress.bar import IncrementalBar
+
+start = "/path/to/images"
+files = [os.path.join(path, filename) for path, dirs, files in os.walk(start) for filename in files]
+
+bar = IncrementalBar("Adding to dictionary: ",max=len(files))
+
+hashdict = {}
+
+for x in range(len(files)):
+	hashdict[x] = files[x]
+	bar.next()
+
+with open('/path/to/dict.json', 'w') as convert_file:
+	convert_file.write(json.dumps(hashdict))
+	

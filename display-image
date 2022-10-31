@@ -1,0 +1,14 @@
+#!/usr/bin/python3.10
+
+import os
+import subprocess
+import randomdict
+import json
+
+with open('/path/to/dict.json') as d:
+	data = d.read()
+hashdict = json.loads(data)
+
+rdict = randomdict.RandomDict(hashdict)
+subprocess.run(["/usr/bin/kitty", "icat", rdict.random_value()])
+
